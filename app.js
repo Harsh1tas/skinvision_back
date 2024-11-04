@@ -9,38 +9,49 @@ import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
 import appointmentRouter from "./router/appointmentRouter.js";
 
-const app = express();
+// Load environment variables from config file
 config({ path: "./config.env" });
 
+// Initialize Express app
+const app = express();
+
+// Configure CORS
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
-    method: ["GET", "POST", "DELETE", "PUT"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
 );
 
+// Middleware setup
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(
   fileUpload({
     useTempFiles: true,
     tempFileDir: "/tmp/",
   })
 );
+
+// Route setup
 app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/appointment", appointmentRouter);
 
-app.get("/",(req,res, next)=> {return res.status(200).json({
-  success: true,
-  message: "Hellor World"
-});
+// Root route
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "Hello World",
+  });
 });
 
+// Database connection
 dbConnection();
 
+// Error handling middleware
 app.use(errorMiddleware);
+
 export default app;
