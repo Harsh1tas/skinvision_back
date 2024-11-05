@@ -1,34 +1,58 @@
-// const mongoose = require('mongoose')
-// const colors = require('colors')
+import express from "express";
+import { config } from "dotenv";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import fileUpload from "express-fileupload";
 
-// const connectDB =()=>{
-//         mongoose.set('strictQuery',true);
-//         mongoose.connect('mongodb://127.0.0.1:27017/HospitalManagement_2');
-//         var db=mongoose.connection;
-//         db.on('error',()=>{console.log("Error Occured while connecting to database".bgRed.white)});
-//         db.once('open',()=>{console.log(`connected to database ${mongoose.connection.host}`.bgGreen.white)})
-//     }
+import { dbConnection } from "./database/dbConnection.js"; // Ensure this matches the export type
+import { errorMiddleware } from "./middlewares/error.js";
+import messageRouter from "./router/messageRouter.js";
+import userRouter from "./router/userRouter.js";
+import appointmentRouter from "./router/appointmentRouter.js";
 
-// module.exports = connectDB;
+// Load environment variables from config file
+config({ path: "./config.env" });
 
+// Initialize Express app
+const app = express();
 
+// Configure CORS
+app.use(
+  cors({
+    origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 
+// Middleware setup
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: "/tmp/",
+  })
+);
 
-const mongoose = require("mongoose");
-const colors = require("colors");
+// Route setup
+app.use("/api/v1/message", messageRouter);
+app.use("/api/v1/user", userRouter);
+app.use("/api/v1/appointment", appointmentRouter);
 
-const dbConnection = async () => {
-  try {
-    await mongoose.connect(process.env.MONGO_URL, { 
-      useNewUrlParser: true, 
-      useUnifiedTopology: true 
-    });
-    console.log(`Mongodb connected: ${mongoose.connection.host}`.bgGreen.white);
-  } catch (error) {
-    console.log(`Mongodb Server Issue: ${error.message}`.bgRed.white);
-  }
-};
+// Root route
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: "Hello World",
+  });
+});
 
-module.exports = dbConnection;
+// Database connection
+dbConnection();
 
+// Error handling middleware
+app.use(errorMiddleware);
 
+export default app;
