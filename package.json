@@ -7,10 +7,10 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "echo 'No build step required'", // Placeholder if needed
-    "vercel-build": "npm run build" // Add this if you plan to include build steps in Vercel
+    "build": "echo 'No build step required'", 
+    "vercel-build": "npm run build" 
   },
-  "author": "Harshita Singh", // Update with your name if desired
+  "author": "Harshita Singh", 
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -26,6 +26,6 @@
     "validator": "^13.11.0"
   },
   "engines": {
-    "node": ">=14.x" // Specify Node.js version if necessary
+    "node": ">=14.x" 
   }
 }
