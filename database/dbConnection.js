@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 
-import { dbConnection } from "./database/dbConnection.js"; // Ensure this matches the export type
+import dbConnection from "./database/dbConnection.js"; // Import your database connection
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
@@ -36,6 +36,9 @@ app.use(
   })
 );
 
+// Initialize Database Connection
+dbConnection(); // Call this function to connect to MongoDB
+
 // Route setup
 app.use("/api/v1/message", messageRouter);
 app.use("/api/v1/user", userRouter);
@@ -48,9 +51,6 @@ app.get("/", (req, res) => {
     message: "Hello World",
   });
 });
-
-// Database connection
-dbConnection();
 
 // Error handling middleware
 app.use(errorMiddleware);
