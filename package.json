@@ -7,10 +7,10 @@
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "build": "echo 'No build step required'", 
-    "vercel-build": "npm run build" 
+    "build": "echo 'No build step required'",
+    "vercel-build": "npm run build"
   },
-  "author": "Harshita Singh", 
+  "author": "Harshita Singh",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -24,9 +24,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",
     "validator": "^13.11.0"
- "engines": {
-  "node": "16.15.x" 
-}
-
-
+  },
+  "engines": {
+    "node": "14.x"
+  }
 }
