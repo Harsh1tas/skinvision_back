@@ -4,7 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 
-import dbConnection from "./database/dbConnection.js"; // Import your database connection
+import dbConnection from "../database/dbConnection.js"; 
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
