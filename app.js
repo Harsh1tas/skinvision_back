@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
 }); 
 
 // Database connection
-dbConnection(); 
+db(); 
 
 // Error handling middleware
 app.use(errorMiddleware); 
