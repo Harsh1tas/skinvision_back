@@ -9,7 +9,7 @@ import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
 import appointmentRouter from "./router/appointmentRouter.js";
-import colors from "colors";
+
 
 
 // Load environment variables from config file
