@@ -1,21 +1,26 @@
-import mongoose from "mongoose";
+// const mongoose = require('mongoose')
+// const colors = require('colors')
 
-export const dbConnection = () => {
-  const uri = process.env.MONGO_URI;
+// const connectDB =()=>{
+//         mongoose.set('strictQuery',true);
+//         mongoose.connect('mongodb://127.0.0.1:27017/HospitalManagement_2');
+//         var db=mongoose.connection;
+//         db.on('error',()=>{console.log("Error Occured while connecting to database".bgRed.white)});
+//         db.once('open',()=>{console.log(`connected to database ${mongoose.connection.host}`.bgGreen.white)})
+//     }
 
-  if (!uri) {
-    console.error("Error: MONGO_URI is not defined in the environment variables.");
-    process.exit(1);
+// module.exports = connectDB;
+
+const mongoose = require("mongoose");
+const colors = require("colors");
+
+const dbConnection = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URL);
+    console.log(`Mongodb connected ${mongoose.connection.host}`.bgGreen.white);
+  } catch (error) {
+    console.log(`Mongodb Server Issue ${error}`.bgRed.white);
   }
-
-  mongoose.connect(uri, {
-    dbName: "MERN_STACK_HOSPITAL_MANAGEMENT_SYSTEM",
-  })
-  .then(() => {
-    console.log("Connected to the database successfully!");
-  })
-  .catch((err) => {
-    console.error("An error occurred while connecting to the database:", err.message);
-    process.exit(1); // Exit the process on connection failure
-  });
 };
+
+module.exports = dbConnection;
