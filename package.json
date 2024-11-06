@@ -23,7 +23,9 @@
     "express-session": "^1.18.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.2.1",
-    "validator": "^13.11.0"
+    "validator": "^13.11.0",
+   "colors": "^1.4.0",
+
   },
   "engines": {
     "node": "20.x"
