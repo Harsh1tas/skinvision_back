@@ -7,9 +7,12 @@ import mongoose from "mongoose"; // Import mongoose
 
 import { errorMiddleware } from "../middlewares/error.js";
 
-import messageRouter from "./router/messageRouter.js";
-import userRouter from "./router/userRouter.js";
-import appointmentRouter from "./router/appointmentRouter.js";
+
+import messageRouter from "../router/messageRouter.js";
+
+
+import userRouter from "../router/userRouter.js";
+import appointmentRouter from "../router/appointmentRouter.js";
 import * as colors from 'colors';
 
 
