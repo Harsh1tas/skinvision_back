@@ -4,11 +4,14 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 import mongoose from "mongoose"; // Import mongoose
-import colors from "colors"; // Import colors for console logging
+
 import { errorMiddleware } from "./middlewares/error.js";
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
 import appointmentRouter from "./router/appointmentRouter.js";
+import * as colors from 'colors';
+
+
 
 
 
