@@ -5,7 +5,8 @@ import cors from "cors";
 import fileUpload from "express-fileupload";
 import mongoose from "mongoose"; // Import mongoose
 
-import { errorMiddleware } from "./middlewares/error.js";
+import { errorMiddleware } from "../middlewares/error.js";
+
 import messageRouter from "./router/messageRouter.js";
 import userRouter from "./router/userRouter.js";
 import appointmentRouter from "./router/appointmentRouter.js";
